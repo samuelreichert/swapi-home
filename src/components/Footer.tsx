@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 const FooterComponent = styled.footer`
-  background-color: ${props => props.theme.colors.gray8};
-  border-top: 1px solid ${props => props.theme.colors.gray7};
-  color: ${props => props.theme.colors.gray1};
+  background-color: ${props => props.theme.colors.grayDark};
+  border-top: 1px solid ${props => props.theme.colors.grayMedium};
+  color: ${props => props.theme.colors.white};
   display: flex;
   justify-content: center;
   padding: 12px 0;
 `;
 
 const FooterLink = styled.a`
-  color: ${props => props.theme.colors.gray5};
+  color: ${props => props.theme.colors.grayLight};
 `;
 
 const Footer = () => {

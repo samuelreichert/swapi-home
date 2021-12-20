@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const NavigationComponent = styled.nav`
-  border-top: 1px solid ${props => props.theme.colors.gray7};
+  border-top: 1px solid ${props => props.theme.colors.grayMedium};
   margin-top: 24px;
   padding: 16px 8px;
   width: 100%;
@@ -29,7 +29,7 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled(Link)`
-  color: ${props => props.theme.colors.gray1};
+  color: ${props => props.theme.colors.white};
   text-decoration: none;
   text-transform: uppercase;
 `;

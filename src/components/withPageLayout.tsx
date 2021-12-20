@@ -6,17 +6,17 @@ import Footer from './Footer';
 const PageLayout = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   justify-content: space-between;
 `;
 
 const ContentLayout = styled.div`
   align-items: center;
-  background-color: ${props => props.theme.colors.gray10};
+  background-color: ${props => props.theme.colors.black};
   display: flex;
   flex-direction: column;
-  height: 100%;
-  padding: 0 64px;
+  min-height: calc(100vh - 199px - 43px - 64px);
+  padding: 32px 64px;
 
 `;
 

@@ -4,7 +4,7 @@ import logo from '../logo.png';
 
 const HeaderComponent = styled.header`
   align-items: center;
-  background-color: ${props => props.theme.colors.gray8};
+  background-color: ${props => props.theme.colors.grayDark};
   display: flex;
   flex-direction: column;
   padding-top: 24px;
@@ -13,7 +13,7 @@ const HeaderComponent = styled.header`
 const Header = () => {
   return (
     <HeaderComponent>
-      <img src={logo} alt='Star Wars logo' width={240} />
+      <img src={logo} alt='Star Wars logo' height={100} />
 
       <Navigation />
     </HeaderComponent>
