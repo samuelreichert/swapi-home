@@ -1,30 +1,42 @@
-import styled from 'styled-components';
 import Character from './Character';
 import { CharactersListProps } from '../config/types';
-
-const CharactersContainer = styled.div`
-  background-color: ${props => props.theme.colors.grayDark};
-  border-radius: 8px;
-  color: ${props => props.theme.colors.white};
-  display: flex;
-  flex-direction: column;
-  margin: 32px 0;
-  padding: 8px 24px 16px;
-  width: 800px;
-`;
-
-const Title = styled.h2`
-  text-align: center;
-`;
 
 const CharactersList = ({ characters }: CharactersListProps) => {
   const slicedCharacters = characters.slice(0, 5);
 
   return (
-    <CharactersContainer>
-      <Title>Characters searched...</Title>
-      {slicedCharacters.map((character, i) => <Character {...character} key={i} />)}
-    </CharactersContainer>
+    <div
+      style={{
+        backgroundColor: 'var(--color-surface-container)',
+        border: '1px solid var(--color-outline-variant)',
+        borderRadius: 'var(--radius-lg)',
+        boxShadow: 'var(--shadow-3)',
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: 'var(--space-6)',
+        padding: 'var(--space-4)',
+        width: '680px',
+        maxWidth: '100%',
+        gap: 'var(--space-1)',
+      }}
+    >
+      <p
+        style={{
+          color: 'var(--color-on-surface-variant)',
+          fontSize: 'var(--text-sm)',
+          fontWeight: 600,
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+          padding: 'var(--space-2) var(--space-4)',
+          marginBottom: 'var(--space-1)',
+        }}
+      >
+        {slicedCharacters.length} result{slicedCharacters.length !== 1 ? 's' : ''}
+      </p>
+      {slicedCharacters.map((character, i) => (
+        <Character {...character} key={i} />
+      ))}
+    </div>
   );
 };
 

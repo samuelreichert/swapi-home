@@ -1,39 +1,67 @@
-import styled from 'styled-components';
 import { withPageLayout } from '../components/withPageLayout';
+import { Badge } from '../components/ui/badge';
+import { Separator } from '../components/ui/separator';
 
-const AboutLink = styled.a`
-  color: ${props => props.theme.colors.grayLight};
-`;
+const tags = [
+  'React 19',
+  'TypeScript 5',
+  'Vite 6',
+  'React Router 7',
+  'TanStack Query 5',
+  'Olyx UI',
+  'Base UI',
+  'Vitest 2',
+  'CSS Custom Properties',
+  'use-debounce',
+  'Vercel',
+];
 
-const AboutText = styled.p`
-  color: ${props => props.theme.colors.white};
-  line-height: 1.5;
-  max-width: 800px;
-`;
+const About = () => (
+  <div style={{ maxWidth: '680px', width: '100%' }}>
+    <h2 style={{ color: 'var(--color-on-background)', marginBottom: 'var(--space-4)' }}>
+      About the project
+    </h2>
+    <p
+      style={{ color: 'var(--color-on-surface-variant)', lineHeight: 'var(--line-height-relaxed)' }}
+    >
+      SWAPI Home is a Star Wars character search app built as a frontend assignment. It lets you
+      search characters by name using the{' '}
+      <a href="https://swapi.info" style={{ color: 'var(--color-primary)' }}>
+        swapi.info
+      </a>{' '}
+      REST API, returning up to 5 results per query. The interface is split into three pages — Home,
+      Characters, and About — all sharing a common layout through a higher-order component.
+    </p>
 
-const AboutTitle = styled.h2`
-  color: ${props => props.theme.colors.white};
-`;
+    <Separator style={{ margin: 'var(--space-8) 0' }} />
 
-const About = () => {
-  return (
-    <>
-      <AboutTitle>About the application</AboutTitle>
-      <AboutText>
-        The application was built with React, written in Typescript. To perform requests, react-query was used. To style the react components, I chose styled-components.<br /> And to build the pages I used react-router-dom. With all the 3 pages having a lot in common I created a HOC hook to apply the header, footer and some styles to the pages.
-      </AboutText>
+    <h2 style={{ color: 'var(--color-on-background)', marginBottom: 'var(--space-4)' }}>
+      Technical decisions
+    </h2>
+    <p
+      style={{ color: 'var(--color-on-surface-variant)', lineHeight: 'var(--line-height-relaxed)' }}
+    >
+      Vite replaces the default bundler for faster cold starts and native ESM. TanStack Query v5
+      manages server state — the query is controlled by an <code>enabled</code> flag tied to a
+      debounced input, removing the need for manual <code>refetch()</code> calls or side-effect
+      orchestration. Olyx UI, built on Base UI primitives, handles components using native CSS
+      custom properties and <code>@layer</code>, giving zero-runtime styling with no specificity
+      conflicts. TypeScript strict mode is enforced throughout, including typed query key tuples via{' '}
+      <code>QueryFunctionContext</code>. Tests run on Vitest with Testing Library in a jsdom
+      environment. Deployment targets Vercel with a rewrite rule that routes all paths to{' '}
+      <code>index.html</code> for client-side navigation.
+    </p>
 
-      <AboutTitle>About me</AboutTitle>
-      <AboutText>
-        Hi, my name is Samuel. I am 26 years old, a Front-end developer, Brazilian, I love coffee, I love building stuff with javascript, and React is a framework that powers me to build apps quickly. My hobbies are read books, watch series, and play video game.
-      </AboutText>
+    <Separator style={{ margin: 'var(--space-8) 0' }} />
 
-      <AboutTitle>GitHub Repository</AboutTitle>
-      <AboutLink href='https://github.com/samuelreichert/swapi-home'>
-        github.com/samuelreichert/swapi-home
-      </AboutLink>
-    </>
-  );
-};
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
+      {tags.map((tag) => (
+        <Badge key={tag} mode="lighter" size="md">
+          {tag}
+        </Badge>
+      ))}
+    </div>
+  </div>
+);
 
 export default withPageLayout(About);

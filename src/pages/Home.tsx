@@ -1,30 +1,65 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { withPageLayout } from '../components/withPageLayout';
 
-const HomeLink = styled(Link)`
-  color: ${props => props.theme.colors.grayLight};
-`;
-
-const HomeText = styled.p`
-  color: ${props => props.theme.colors.white};
-  line-height: 1.5;
-  max-width: 800px;
-`;
-
-const HomeTitle = styled.h2`
-  color: ${props => props.theme.colors.white};
-`;
-
 const Home = () => (
-  <>
-    <HomeTitle>Welcome to Star Wars search app</HomeTitle>
-    <HomeText>
-      To use the search, go to the <HomeLink to='/characters'>characters</HomeLink> page, and type the name of the Star Wars character.<br />
-      After finish typing the results of the character searched will show.<br />
-      You will receive 5 characters per search. If the search does not return what you were looking for, just delete and type again.<br />
-    </HomeText>
-  </>
+  <div style={{ maxWidth: '640px', width: '100%', textAlign: 'center' }}>
+    <p
+      style={{
+        color: 'var(--color-primary)',
+        fontSize: 'var(--text-sm)',
+        fontWeight: 600,
+        letterSpacing: '0.1em',
+        textTransform: 'uppercase',
+        marginBottom: 'var(--space-4)',
+      }}
+    >
+      Star Wars Character Search
+    </p>
+
+    <h2
+      style={{
+        color: 'var(--color-on-background)',
+        fontSize: 'var(--text-3xl)',
+        marginBottom: 'var(--space-6)',
+        lineHeight: 1.2,
+      }}
+    >
+      Find any character from the galaxy
+    </h2>
+
+    <p
+      style={{
+        color: 'var(--color-on-surface-variant)',
+        lineHeight: 'var(--line-height-relaxed)',
+        marginBottom: 'var(--space-8)',
+        fontSize: 'var(--text-lg)',
+      }}
+    >
+      Search across 82 Star Wars characters from the SWAPI database. Type a name and results appear
+      instantly.
+    </p>
+
+    <Link
+      to="/characters"
+      style={{
+        display: 'inline-block',
+        backgroundColor: 'var(--color-primary)',
+        color: 'var(--color-on-primary)',
+        padding: 'var(--space-3) var(--space-8)',
+        borderRadius: 'var(--radius-rounded)',
+        textDecoration: 'none',
+        fontWeight: 600,
+        fontSize: 'var(--text-base)',
+        letterSpacing: '0.02em',
+        boxShadow: 'var(--shadow-2)',
+        transition: 'opacity var(--transition-standard-fast-effects)',
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
+      onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+    >
+      Search characters
+    </Link>
+  </div>
 );
 
 export default withPageLayout(Home);

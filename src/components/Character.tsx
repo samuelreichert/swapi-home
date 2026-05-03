@@ -1,19 +1,5 @@
-import styled from 'styled-components';
+import { useState } from 'react';
 import { Character as CharacterType } from '../config/types';
-
-const CharacterDetails = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const CharacterItem = styled.div`
-  border-radius: 4px;
-  padding: 0 12px 18px;
-
-  &:hover {
-    background-color: ${props => props.theme.colors.grayMedium};
-  }
-`;
 
 const Character = ({
   birth_year,
@@ -24,16 +10,49 @@ const Character = ({
   mass,
   name,
 }: CharacterType) => {
-  return (
-    <CharacterItem>
-      <h3>{name} <small>(Gender: {gender})</small></h3>
+  const [hovered, setHovered] = useState(false);
 
-      <CharacterDetails>
-        <span>Birth year: {birth_year}</span>
-        <span>Mass: {mass}kg | Height: {height}cm</span>
-        <span>Eyes: {eye_color} | Hair: {hair_color}</span>
-      </CharacterDetails>
-    </CharacterItem>
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        borderRadius: 'var(--radius-md)',
+        padding: 'var(--space-3) var(--space-4)',
+        backgroundColor: hovered ? 'var(--color-surface-container-high)' : 'transparent',
+        transition: 'background-color var(--transition-standard-fast-effects)',
+        cursor: 'default',
+      }}
+    >
+      <h3 style={{ color: 'var(--color-on-surface)', marginBottom: 'var(--space-1)' }}>
+        {name}{' '}
+        <span
+          style={{
+            fontWeight: 400,
+            fontSize: 'var(--text-sm)',
+            color: 'var(--color-on-surface-variant)',
+          }}
+        >
+          {gender !== 'n/a' ? `· ${gender}` : ''}
+        </span>
+      </h3>
+      <div
+        style={{
+          display: 'flex',
+          gap: 'var(--space-6)',
+          fontSize: 'var(--text-sm)',
+          color: 'var(--color-on-surface-variant)',
+        }}
+      >
+        <span>Born {birth_year}</span>
+        <span>
+          {mass}kg · {height}cm
+        </span>
+        <span>
+          {eye_color} eyes · {hair_color} hair
+        </span>
+      </div>
+    </div>
   );
 };
 

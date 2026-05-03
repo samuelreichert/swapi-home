@@ -1,12 +1,17 @@
-const URL = 'https://swapi.dev/api/people/';
+const API_URL = 'https://swapi.info/api/people/';
 
-const searchCharacters = ({ queryKey }: { queryKey: any }) => {
-  const [,queryParams] = queryKey;
-  const {
-    search,
-  } = queryParams;
-
-  return fetch(`${URL}?search=${search}&limit=5`).then(res => res.json());
+export const fetchAllCharacters = async (): Promise<Character[]> => {
+  const res = await fetch(API_URL);
+  if (!res.ok) throw new Error('Network response was not ok');
+  return res.json();
 };
 
-export default searchCharacters;
+export type Character = {
+  birth_year: string;
+  eye_color: string;
+  gender: string;
+  hair_color: string;
+  height: string;
+  mass: string;
+  name: string;
+};

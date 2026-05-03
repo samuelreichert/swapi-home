@@ -1,17 +1,8 @@
 import { ComponentType } from 'react';
-
-export type Character = {
-  birth_year: string;
-  eye_color: string;
-  gender: string;
-  hair_color: string;
-  height: string;
-  mass: string;
-  name: string;
-};
+export type { Character } from '../api/searchCharacters';
 
 export type CharactersListProps = {
-  characters: Character[];
+  characters: import('../api/searchCharacters').Character[];
 };
 
 export type PageLayoutProps = ComponentType;

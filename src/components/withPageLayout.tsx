@@ -1,33 +1,24 @@
 import { ComponentType } from 'react';
-import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 
-const PageLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  justify-content: space-between;
-`;
-
-const ContentLayout = styled.div`
-  align-items: center;
-  background-color: ${props => props.theme.colors.black};
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - 199px - 43px - 64px);
-  padding: 32px 64px;
-
-`;
-
-export function withPageLayout<T>(WrappedComponent: ComponentType<T>) {
+export function withPageLayout<T extends object>(WrappedComponent: ComponentType<T>) {
   return (props: T) => (
-    <PageLayout>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-      <ContentLayout>
+      <main
+        style={{
+          alignItems: 'center',
+          backgroundColor: 'var(--color-background)',
+          display: 'flex',
+          flexDirection: 'column',
+          flexGrow: 1,
+          padding: 'var(--space-12) var(--space-16)',
+        }}
+      >
         <WrappedComponent {...props} />
-      </ContentLayout>
+      </main>
       <Footer />
-    </PageLayout>
+    </div>
   );
-};
+}
